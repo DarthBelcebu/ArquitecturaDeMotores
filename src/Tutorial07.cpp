@@ -554,19 +554,10 @@ HRESULT InitDevice()
     XMVECTOR Up = XMVectorSet(0.0f, 1.0f, 0.0f, 0.0f);
     g_View = XMMatrixLookAtLH(Eye, At, Up);
 
-    //Colocamos la variable como global
-    /*Camera cam;*/ //Va a almacenar la matriz transpuesta de vista y proyección
-
-    //CBNeverChanges cbNeverChanges;
-    /*cbNeverChanges.mView = XMMatrixTranspose( g_View );
-    g_pImmediateContext->UpdateSubresource( g_pCBNeverChanges, 0, nullptr, &cbNeverChanges, 0, 0 );*/
 
     // Initialize the projection matrix (global)
     g_Projection = XMMatrixPerspectiveFovLH(XM_PIDIV4, width / (FLOAT)height, 0.01f, 100.0f);
 
-    //CBChangeOnResize cbChangesOnResize;
-    /*cbChangesOnResize.mProjection = XMMatrixTranspose( g_Projection );
-    g_pImmediateContext->UpdateSubresource( g_pCBChangeOnResize, 0, nullptr, &cbChangesOnResize, 0, 0 );*/
 
     cam.mView = XMMatrixTranspose(g_View);
     cam.mProjection = XMMatrixTranspose(g_Projection);
@@ -581,41 +572,15 @@ HRESULT InitDevice()
 //LÓGICA del programa
 //Matemáticas, física, buffers, etc...
 
-//static float t = 0.0f;
 float s;
-float k = 0.5f;
+float scale = 0.5f;
 
 void update(float deltaTime)
 {
-    //// Update our time
-    ///*static float t = 0.0f;*/
-    //if (g_driverType == D3D_DRIVER_TYPE_REFERENCE)
-    //{
-    //    t += (float)XM_PI * 0.0125f;
-    //}
-    //else
-    //{
-    //    static unsigned int dwTimeStart = 0;
-    //    unsigned int dwTimeCur = GetTickCount();
-    //    if (dwTimeStart == 0)
-    //        dwTimeStart = dwTimeCur;
-    //    t = (dwTimeCur - dwTimeStart) / 1000.0f;
-    //}
-
-    /*t = deltaTime;*/
     s += 0.0002f;
 
-    // Modify the color
-    //g_vMeshColor.x = (sinf(s * 1.0f) + 1.0f) * 0.5f;
-    //g_vMeshColor.y = (cosf(s * 3.0f) + 1.0f) * 0.5f;
-    //g_vMeshColor.z = (sinf(s * 5.0f) + 1.0f) * 0.5f;
-
-
-    // Rotate cube around the origin
-    //g_World = XMMatrixScaling(.5f, .5f, .5f) * XMMatrixRotationY(t) * XMMatrixTranslation(1, 0, 0);
-
     //https://learn.microsoft.com/es-es/shows/introduction-to-c-and-directx-game-development/03>
-    g_World = XMMatrixScaling(k, k, k) * XMMatrixRotationY(s) * XMMatrixTranslation(v3Position.x, v3Position.y, v3Position.z);
+    g_World = XMMatrixScaling(scale, scale, scale) * XMMatrixRotationY(s) * XMMatrixTranslation(v3Position.x, v3Position.y, v3Position.z);
 
 
     //
@@ -687,27 +652,35 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
         switch (wParam)
         {
         case 'A':
-            v3Position.x -= fSpeed * g_Time.m_DeltaTime; //Se mueve hacia izquierda
+            v3Position.x -= fSpeed * g_Time.m_DeltaTime; //Se mueve hacia izquierda o movimiento negativo en y
             break;
 
         case 'D':
-            v3Position.x += fSpeed * g_Time.m_DeltaTime; //Se mueve hacia derecha
+            v3Position.x += fSpeed * g_Time.m_DeltaTime; //Se mueve hacia derecha o movimiento positivo en y
             break;
 
         case 'W':
-            v3Position.y += fSpeed * g_Time.m_DeltaTime; //Se mueve hacia arriba
+            v3Position.y += fSpeed * g_Time.m_DeltaTime; //Se mueve hacia arriba o movimiento positivo en x
             break;
 
         case 'S':
-            v3Position.y -= fSpeed * g_Time.m_DeltaTime;  //Se mueve hacia abajo
+            v3Position.y -= fSpeed * g_Time.m_DeltaTime;  //Se mueve hacia abajo o movimiento negativo en x
+            break;
+
+        case 'Q':
+            v3Position.z += fSpeed * g_Time.m_DeltaTime; //Se mueve hacia adelante o movimiento positivo en z
+            break;
+
+        case 'E':
+            v3Position.z -= fSpeed * g_Time.m_DeltaTime;  //Se mueve hacia atras o movimiento negativo en z
             break;
 
         case 'R':
-            k += fSpeed * g_Time.m_DeltaTime;  //Se incrementa la escala
+            scale += fSpeed * g_Time.m_DeltaTime;  //Se incrementa la escala
             break;
 
         case 'F':
-            k -= fSpeed * g_Time.m_DeltaTime;   //Se disminuye la escala
+            scale -= fSpeed * g_Time.m_DeltaTime;   //Se disminuye la escala
             break;
 
         case '0':
