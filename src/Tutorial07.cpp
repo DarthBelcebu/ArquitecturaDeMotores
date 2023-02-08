@@ -77,10 +77,10 @@ ID3D11SamplerState* g_pSamplerLinear = nullptr;
 XMMATRIX                            g_World;
 XMMATRIX                            g_View;
 XMMATRIX                            g_Projection;
-XMFLOAT4                            g_vMeshColor(0.7f, 0.7f, 0.7f, 1.0f);
+XMFLOAT4                            g_vMeshColor(0.7f, 0.7f, 0.7f, 1.0f); //colores en RGBA
 Camera                              cam;
 
-Vector3 v3Position;
+Vector3 v3Position; //Posicion del mesh
 float   fSpeed = 100.0f, R = 0, G = 0, B = 0;
 CTime    g_Time;
 
@@ -89,7 +89,6 @@ CTime    g_Time;
 //--------------------------------------------------------------------------------------
 HRESULT InitWindow(HINSTANCE hInstance, int nCmdShow);
 HRESULT InitDevice();
-//void CleanupDevice(); //Lo cambiamos por destroy
 LRESULT CALLBACK    WndProc(HWND, UINT, WPARAM, LPARAM);
 void Render();
 void update(float deltaTime);
