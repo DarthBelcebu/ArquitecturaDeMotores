@@ -77,7 +77,7 @@ ID3D11SamplerState* g_pSamplerLinear = nullptr;
 XMMATRIX                            g_World;
 XMMATRIX                            g_View;
 XMMATRIX                            g_Projection;
-XMFLOAT4                            g_vMeshColor(0.7f, 0.7f, 0.7f, 1.0f); //colores en RGBA
+XMFLOAT4                            g_vMeshColor(0.0f, 0.0f, 0.0f, 1.0f); //colores en RGBA
 Camera                              cam;
 
 Vector3 v3Position; //Posicion del mesh
@@ -716,7 +716,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
             break;
         case '5':
             B += .01f; //Se suma .01 a azul
-            if (B < 1) //Se ancla el maximo a 1
+            if (B > 1) //Se ancla el maximo a 1
                 B = 1;
             g_vMeshColor = XMFLOAT4(R, G, B, 1.0f); //Se actualiza el color
             break;
