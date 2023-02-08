@@ -687,68 +687,71 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
         switch (wParam)
         {
         case 'A':
-            v3Position.x -= fSpeed * g_Time.m_DeltaTime;
+            v3Position.x -= fSpeed * g_Time.m_DeltaTime; //Se mueve hacia izquierda
             break;
 
         case 'D':
-            v3Position.x += fSpeed * g_Time.m_DeltaTime;
+            v3Position.x += fSpeed * g_Time.m_DeltaTime; //Se mueve hacia derecha
             break;
 
         case 'W':
-            v3Position.y += fSpeed * g_Time.m_DeltaTime;
+            v3Position.y += fSpeed * g_Time.m_DeltaTime; //Se mueve hacia arriba
             break;
 
         case 'S':
-            v3Position.y -= fSpeed * g_Time.m_DeltaTime; //WASD son para mover el cubo
+            v3Position.y -= fSpeed * g_Time.m_DeltaTime;  //Se mueve hacia abajo
             break;
 
         case 'R':
-            k += fSpeed * g_Time.m_DeltaTime;  //Se modifica la escala
+            k += fSpeed * g_Time.m_DeltaTime;  //Se incrementa la escala
             break;
 
         case 'F':
-            k -= fSpeed * g_Time.m_DeltaTime;
+            k -= fSpeed * g_Time.m_DeltaTime;   //Se disminuye la escala
             break;
 
         case '0':
-            g_vMeshColor = XMFLOAT4(0.8f, 0.8f, 0.8f, 1.0f); //Se hace un gradiente con los numeros 1-6, se añade un poco de color en cada elemento de RGB
+            R = 1;
+            G = 1;
+            B = 1;
+            g_vMeshColor = XMFLOAT4(R, G, B, 1.0f); //se reinicia el color a blanco
             break;
-
+            //Se hace un gradiente con los numeros 1-6, se añade un poco de color en cada elemento de RGB
         case '1':
-            R += .01f;
-            if (R > 1)
+            R += .01f; //Se suma .01 a rojo
+            if (R > 1) //Se ancla el maximo a 1
                 R = 1;
-            g_vMeshColor = XMFLOAT4(R, G, B, 1.0f);
+            g_vMeshColor = XMFLOAT4(R, G, B, 1.0f); //Se actualiza el color
             break;
         case '2':
-            R -= .01f;
-            if (R < 0)
+            R -= .01f; //Se resta .01 a rojo
+            if (R < 0) //Se ancla el minimo a 0
                 R = 0;
-            g_vMeshColor = XMFLOAT4(R, G, B, 1.0f);
+            g_vMeshColor = XMFLOAT4(R, G, B, 1.0f); //Se actualiza el color
             break;
         case '3':
-            G += .01f;
-            if (G > 1)
+            G += .01f; //Se suma .01 a verde
+            if (G > 1) //Se ancla el maximo a 1
                 G = 1;
-            g_vMeshColor = XMFLOAT4(R, G, B, 1.0f);
+            g_vMeshColor = XMFLOAT4(R, G, B, 1.0f); //Se actualiza el color
             break;
         case '4':
-            G -= .01f;
-            if (G < 0)
+            G -= .01f; //Se resta .01 a verde
+            if (G < 0) //Se ancla el minimo a 0
                 G = 0;
-            g_vMeshColor = XMFLOAT4(R, G, B, 1.0f);
+            g_vMeshColor = XMFLOAT4(R, G, B, 1.0f); //Se actualiza el color
             break;
         case '5':
-            B += .01f;
-            if (B < 1)
+            B += .01f; //Se suma .01 a azul
+            if (B < 1) //Se ancla el maximo a 1
                 B = 1;
-            g_vMeshColor = XMFLOAT4(R, G, B, 1.0f);
+            g_vMeshColor = XMFLOAT4(R, G, B, 1.0f); //Se actualiza el color
             break;
         case '6':
-            B -= .01f;
-            if (B < 0)
+            B -= .01f; //Se resta .01 a azul
+            if (B < 0) //Se ancla el minimo a 0
                 B = 0;
-            g_vMeshColor = XMFLOAT4(R, G, B, 1.0f);
+            g_vMeshColor = XMFLOAT4(R, G, B, 1.0f); //Se actualiza el color
             break;
         }
 
