@@ -652,19 +652,19 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
         switch (wParam)
         {
         case 'A':
-            v3Position.x -= fSpeed * g_Time.m_DeltaTime; //Se mueve hacia izquierda o movimiento negativo en y
+            v3Position.x -= fSpeed * g_Time.m_DeltaTime; //Se mueve hacia izquierda o movimiento negativo en x
             break;
 
         case 'D':
-            v3Position.x += fSpeed * g_Time.m_DeltaTime; //Se mueve hacia derecha o movimiento positivo en y
+            v3Position.x += fSpeed * g_Time.m_DeltaTime; //Se mueve hacia derecha o movimiento positivo en x
             break;
 
         case 'W':
-            v3Position.y += fSpeed * g_Time.m_DeltaTime; //Se mueve hacia arriba o movimiento positivo en x
+            v3Position.y += fSpeed * g_Time.m_DeltaTime; //Se mueve hacia arriba o movimiento positivo en y
             break;
 
         case 'S':
-            v3Position.y -= fSpeed * g_Time.m_DeltaTime;  //Se mueve hacia abajo o movimiento negativo en x
+            v3Position.y -= fSpeed * g_Time.m_DeltaTime;  //Se mueve hacia abajo o movimiento negativo en y
             break;
 
         case 'Q':
