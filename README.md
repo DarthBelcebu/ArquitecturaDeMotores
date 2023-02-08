@@ -2,12 +2,12 @@
 # Octavo cuatrimestre
 
 # Movimiento 'W' 'A' 'S' 'D' 'Q' 'E'
-W arriba o movimiento positivo en x
-S abajo o movimiento negativo en x
-D derecha o movimiento positivo en y
-A izquierda o movimiento negativo en y
-Q adelante o movimiento positivo en z
-E atras o movimiento negativo en z
+* W arriba o movimiento positivo en y
+* S abajo o movimiento negativo en y
+* D derecha o movimiento positivo en x
+* A izquierda o movimiento negativo en x
+* Q adelante o movimiento positivo en z
+* E atras o movimiento negativo en z
 
 # Incrementar escala 'R' Reducir escala 'F' 
 
