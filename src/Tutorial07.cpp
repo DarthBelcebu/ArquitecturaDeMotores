@@ -13,7 +13,7 @@
 #include <vector>
 #include "resource.h"
 
-#include "Prerequisities.h"     //Mas ordenado (projecto y el orden de llamadas)
+#include "Prerequisities.h"     //Se añaden librerias para que se vea mas limpio
 
 //Nuestras librerias
 #include "CTime.h"
@@ -29,16 +29,6 @@ struct SimpleVertex
     XMFLOAT3 Pos;
     XMFLOAT2 Tex;
 };
-
-//struct CBNeverChanges       //Propiedades de la camara y su vizualización
-//{
-//    XMMATRIX mView;
-//};
-
-//struct CBChangeOnResize     //Propiedades de la camara y su vizualización
-//{
-//    XMMATRIX mProjection;
-//};
 
 struct Camera
 {
@@ -80,8 +70,6 @@ ID3D11Buffer* g_pVertexBuffer = nullptr;
 ID3D11Buffer* g_pIndexBuffer = nullptr;
 
 ID3D11Buffer* g_Camera = nullptr;
-//ID3D11Buffer*                       g_pCBNeverChanges = nullptr;
-//ID3D11Buffer*                       g_pCBChangeOnResize = nullptr;
 
 ID3D11Buffer* g_pCBChangesEveryFrame = nullptr;
 ID3D11ShaderResourceView* g_pTextureRV = nullptr;
@@ -122,43 +110,6 @@ void render()
 
 }
 
-//Esta funcion esta encargada de liberar los recursos
-//utilizados en el programa
-//void destroy()
-//{
-//
-//}
-
-//class Behavior
-//{
-//    public:
-//        char m_name;
-//        bool m_static = false;
-//    public:
-//        Behavior();
-//        virtual void init() = 0;
-//        void update();
-//        void render();
-//        void destroy();
-//
-//};
-//
-//struct Actor : Behavior
-//{
-//    public:
-//        void Start()
-//        {
-//            init();
-//        }
-//
-//        void init() override;
-//
-//};
-//
-//void Actor::init()
-//{
-//
-//}
 
 //--------------------------------------------------------------------------------------
 // Entry point to the program. Initializes everything and goes into a message processing 
@@ -193,7 +144,7 @@ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR lpCmdLi
         else
         {
             g_Time.update();
-            update(g_Time.m_fDeltaTime);
+            update(g_Time.m_DeltaTime);
             Render();
         }
     }
@@ -555,20 +506,6 @@ HRESULT InitDevice()
     // Set primitive topology
     g_pImmediateContext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
 
-    // Create the constant buffers
-    //bd.Usage = D3D11_USAGE_DEFAULT;
-    //bd.ByteWidth = sizeof(CBNeverChanges);
-    //bd.BindFlags = D3D11_BIND_CONSTANT_BUFFER;
-    //bd.CPUAccessFlags = 0;
-    //hr = g_pd3dDevice->CreateBuffer( &bd, nullptr, &g_pCBNeverChanges );
-    //if( FAILED( hr ) )
-    //    return hr;
-    //
-    //bd.ByteWidth = sizeof(CBChangeOnResize);
-    //hr = g_pd3dDevice->CreateBuffer( &bd, nullptr, &g_pCBChangeOnResize );
-    //if( FAILED( hr ) )
-    //    return hr;
-
     bd.Usage = D3D11_USAGE_DEFAULT;
     bd.ByteWidth = sizeof(Camera);
     bd.BindFlags = D3D11_BIND_CONSTANT_BUFFER;
@@ -748,67 +685,70 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 
     case WM_KEYDOWN:
 
-        /*if (wParam == VK_LEFT)
-        {
-            v3Position.x -=  fSpeed * t;
-        }
-        if (wParam == VK_RIGHT)
-        {
-            v3Position.x += fSpeed * t;
-        }*/
-
         switch (wParam)
         {
         case 'A':
-            v3Position.x -= fSpeed * g_Time.m_fDeltaTime;
+            v3Position.x -= fSpeed * g_Time.m_DeltaTime;
             break;
 
         case 'D':
-            v3Position.x += fSpeed * g_Time.m_fDeltaTime;
+            v3Position.x += fSpeed * g_Time.m_DeltaTime;
             break;
 
         case 'W':
-            v3Position.y += fSpeed * g_Time.m_fDeltaTime;
+            v3Position.y += fSpeed * g_Time.m_DeltaTime;
             break;
 
         case 'S':
-            v3Position.y -= fSpeed * g_Time.m_fDeltaTime;
+            v3Position.y -= fSpeed * g_Time.m_DeltaTime; //WASD son para mover el cubo
             break;
 
-        case 'Q':
-            k += fSpeed * g_Time.m_fDeltaTime;
+        case 'R':
+            k += fSpeed * g_Time.m_DeltaTime;  //Se modifica la escala
             break;
 
-        case 'E':
-            k -= fSpeed * g_Time.m_fDeltaTime;
+        case 'F':
+            k -= fSpeed * g_Time.m_DeltaTime;
             break;
 
         case '0':
-            g_vMeshColor = XMFLOAT4(0.8f, 0.8f, 0.8f, 1.0f);
+            g_vMeshColor = XMFLOAT4(0.8f, 0.8f, 0.8f, 1.0f); //Se hace un gradiente con los numeros 1-6, se añade un poco de color en cada elemento de RGB
             break;
 
         case '1':
             R += .01f;
+            if (R > 1)
+                R = 1;
             g_vMeshColor = XMFLOAT4(R, G, B, 1.0f);
             break;
         case '2':
             R -= .01f;
+            if (R < 0)
+                R = 0;
             g_vMeshColor = XMFLOAT4(R, G, B, 1.0f);
             break;
         case '3':
             G += .01f;
+            if (G > 1)
+                G = 1;
             g_vMeshColor = XMFLOAT4(R, G, B, 1.0f);
             break;
         case '4':
             G -= .01f;
+            if (G < 0)
+                G = 0;
             g_vMeshColor = XMFLOAT4(R, G, B, 1.0f);
             break;
         case '5':
             B += .01f;
+            if (B < 1)
+                B = 1;
             g_vMeshColor = XMFLOAT4(R, G, B, 1.0f);
             break;
         case '6':
             B -= .01f;
+            if (B < 0)
+                B = 0;
             g_vMeshColor = XMFLOAT4(R, G, B, 1.0f);
             break;
         }

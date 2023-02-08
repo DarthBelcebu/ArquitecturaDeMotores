@@ -18,6 +18,6 @@ private:
 	LARGE_INTEGER m_iTimerFrequency;
 
 public:
-	float m_fDeltaTime;
+	float m_DeltaTime;
 };
 

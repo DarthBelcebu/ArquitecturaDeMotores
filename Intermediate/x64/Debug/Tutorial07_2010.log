@@ -119,5 +119,5 @@ C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamathmisc.inl
 C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamathmisc.inl(519,51): warning C4838: conversion from 'unsigned int' to 'INT' requires a narrowing conversion
 C:\Users\DARTH\Documents\Visual Studio Projects\DirectXSamples\Tutorial07\src\Tutorial07.cpp(444,51): warning C4267: 'argument': conversion from 'size_t' to 'UINT', possible loss of data
 C:\Users\DARTH\Documents\Visual Studio Projects\DirectXSamples\Tutorial07\src\Tutorial07.cpp(417,10): warning C4189: 'numElements': local variable is initialized but not referenced
-C:\Users\DARTH\Documents\Visual Studio Projects\DirectXSamples\Tutorial07\src\Tutorial07.cpp(652,19): warning C4100: 'deltaTime': unreferenced formal parameter
+C:\Users\DARTH\Documents\Visual Studio Projects\DirectXSamples\Tutorial07\src\Tutorial07.cpp(638,19): warning C4100: 'deltaTime': unreferenced formal parameter
   Tutorial07_2010.vcxproj -> C:\Users\DARTH\Documents\Visual Studio Projects\DirectXSamples\Tutorial07\bin\x64\Tutorial07_d.exe
