@@ -28,6 +28,6 @@ Estos se hacen por una gradiente que se suma .01 cada que se recibe el input
 *Viewport
 *Window
 
-#Bugs y cosas que hacer
+# Bugs y cosas que hacer
 *Al terminar aparece el error "Tutorial07_d.exe has triggered a breakpoint" en DepthStencil View
 *Terminar de comentar
