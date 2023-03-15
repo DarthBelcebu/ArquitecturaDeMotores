@@ -5,17 +5,18 @@
 #include "CTime.h" //Time
 
 //Hell/Abstraction
-#include "Window.h"
 #include "DeviceContext.h"
 #include "Device.h"
 #include "DepthStencilView.h"
-#include "Texture.h"
 #include "InputLayout.h"
-#include "SwapChain.h"
 #include "RenderTargetView.h"
-#include "Transform.h"
+#include "SwapChain.h"
 #include "SamplerState.h"
+#include "Texture.h"
+#include "Transform.h"
 #include "Viewport.h"
+#include "Window.h"
+
 
 
 //--------------------------------------------------------------------------------------
@@ -49,7 +50,7 @@ ID3D11Buffer*                       g_pCBChangesEveryFrame = nullptr;
 XMMATRIX                            g_World;
 XMMATRIX                            g_View;
 XMMATRIX g_Projection;
-XMFLOAT4 g_vMeshColor(0.0f, 0.0f, 0.0f, 1.0f);
+XMFLOAT4 g_vMeshColor(1.f, 1.0f, 1.0f, 1.0f);
 
 float R = 1, G = 1, B = 1;
 
@@ -366,10 +367,10 @@ HRESULT InitDevice(){
 
 //All mathie stuff goes here
 void update(){
-    g_transform.m_fRotateNum += 0.0002f;
+    g_transform.Rotation += 0.0002f;
 
-    g_World = XMMatrixScaling    (g_transform.m_fScaleNum, g_transform.m_fScaleNum, g_transform.m_fScaleNum) * 
-              XMMatrixRotationY  (g_transform.m_fRotateNum) * 
+    g_World = XMMatrixScaling    (g_transform.Scale, g_transform.Scale, g_transform.Scale) *
+              XMMatrixRotationY  (g_transform.Rotation) * 
               XMMatrixTranslation(g_transform.m_v3Position.x, g_transform.m_v3Position.y, g_transform.m_v3Position.z);
 
     // Update variables that change once per frame
@@ -426,35 +427,35 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
         switch (wParam)
         {
         case 'A':
-            g_transform.m_v3Position.x -= g_transform.m_fSpeed * g_Time.m_fDeltaTime; //Moves in negative x or left
+            g_transform.m_v3Position.x -= g_transform.Speed * g_Time.m_fDeltaTime; //Moves in negative x or left
             break;
 
         case 'D':
-            g_transform.m_v3Position.x += g_transform.m_fSpeed * g_Time.m_fDeltaTime; //Moves in positive x or left
+            g_transform.m_v3Position.x += g_transform.Speed * g_Time.m_fDeltaTime; //Moves in positive x or left
             break;
 
         case 'W':
-            g_transform.m_v3Position.y += g_transform.m_fSpeed * g_Time.m_fDeltaTime; //Moves in positive y or up
+            g_transform.m_v3Position.y += g_transform.Speed * g_Time.m_fDeltaTime; //Moves in positive y or up
             break;
 
         case 'S':
-            g_transform.m_v3Position.y -= g_transform.m_fSpeed * g_Time.m_fDeltaTime;  //Moves in negative y or down
+            g_transform.m_v3Position.y -= g_transform.Speed * g_Time.m_fDeltaTime;  //Moves in negative y or down
             break;
 
         case 'Q':
-            g_transform.m_v3Position.z += g_transform.m_fSpeed * g_Time.m_fDeltaTime; //Moves in positive z or forward
+            g_transform.m_v3Position.z += g_transform.Speed * g_Time.m_fDeltaTime; //Moves in positive z or forward
             break;
 
         case 'E':
-            g_transform.m_v3Position.z -= g_transform.m_fSpeed * g_Time.m_fDeltaTime;  //Moves in negative z or backwards
+            g_transform.m_v3Position.z -= g_transform.Speed * g_Time.m_fDeltaTime;  //Moves in negative z or backwards
             break;
 
         case 'R':
-            g_transform.m_fScaleNum += g_transform.m_fSpeed * g_Time.m_fDeltaTime;  //increases scale
+            g_transform.Scale += g_transform.Speed * g_Time.m_fDeltaTime;  //increases scale
             break;
 
         case 'F':
-            g_transform.m_fScaleNum -= g_transform.m_fSpeed * g_Time.m_fDeltaTime;   //decreases scale
+            g_transform.Scale -= g_transform.Speed * g_Time.m_fDeltaTime;   //decreases scale
             break;
 
         case '0':

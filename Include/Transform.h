@@ -19,7 +19,7 @@ class Transform{
 	destroy();
 	
 	public: Vector3 m_v3Position;
-	float m_fScaleNum;
-	float m_fRotateNum;
-	float m_fSpeed;
+	float Scale;
+	float Rotation;
+	float Speed;
 };

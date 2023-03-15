@@ -5,9 +5,9 @@ class Device; //Calling the Class Device
 
 class DepthStencilView{
 	public: DepthStencilView() = default; //Giving the default value to the depth stencil view
-	~DepthStencilView(){SAFE_RELEASE(m_pDepthStencilView) }; //
+	~DepthStencilView(){SAFE_RELEASE(m_pDepthStencilView) }; 
 
-	void init(Device device, ID3D11Resource* depthStencil, DXGI_FORMAT Format); //initializing device, depth stencil and the format
+	void init(Device device, ID3D11Resource* depthStencil, DXGI_FORMAT Format); //initializing device, depth stencil and format
 
 	void update();
 

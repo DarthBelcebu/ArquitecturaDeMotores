@@ -1,12 +1,10 @@
 #pragma once
 #include <Windows.h>
-
-class CTime{
+class CTime{ //Takes care and gives values for time
 	public: CTime();
 	~CTime();
 
-	void init();	//initializating functions (m_iLastTime & m_iTimerFrequency)
-
+	void init();
 
 	void update();
 
