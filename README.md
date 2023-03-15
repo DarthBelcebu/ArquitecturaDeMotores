@@ -14,3 +14,20 @@
 # Cambiar colores 
 Con el primer numero se aumenta y el segundp se disminuye la intensidad R '1' '2' G '3' '4' B '5' '6'
 Estos se hacen por una gradiente que se suma .01 cada que se recibe el input
+
+# Abstraccion de clases
+*DeviceContext
+*Device
+*DepthStencilView
+*InputLayout
+*RenderTargetView
+*SwapChain
+*SamplerState
+*Texture
+*Transform
+*Viewport
+*Window
+
+#Bugs y cosas que hacer
+*Al terminar aparece el error "Tutorial07_d.exe has triggered a breakpoint" en DepthStencil View
+*Terminar de comentar
