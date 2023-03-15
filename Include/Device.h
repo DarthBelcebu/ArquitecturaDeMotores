@@ -20,7 +20,7 @@ class Device{
 		ID3D11RenderTargetView** ppRTView); 	//Creates a render-target view for accessing resources
 
 	HRESULT	CreateTexture2D(const D3D11_TEXTURE2D_DESC* pDesc, const D3D11_SUBRESOURCE_DATA *pInitialData,
-		ID3D11Texture2D** ppTexture2D); 	//Create an array of 2D textures.
+		ID3D11Texture2D** ppTexture2D); 	//Create an array of 2D textures
 
 	HRESULT	CreateVertexShader(const void* pShaderBytecode, unsigned int BytecodeLength,
 		ID3D11ClassLinkage* pClassLinkage, ID3D11VertexShader** ppVertexShader);	//Create a vertex-shader

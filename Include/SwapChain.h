@@ -23,7 +23,7 @@ class SwapChain{
 
 	void destroy();
 
-	//Share the screen
+	//output the screen
 	void present();
 
 	private: D3D_DRIVER_TYPE m_driverType = D3D_DRIVER_TYPE_NULL;
