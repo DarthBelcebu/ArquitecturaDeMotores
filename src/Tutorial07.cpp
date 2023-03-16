@@ -250,7 +250,9 @@ HRESULT InitDevice(){
 
 
     // Create the input layout
-    g_inputLayout.init(g_device, Layout, pVSBlob);
+    g_inputLayout.init(g_device,
+                       Layout,
+                       pVSBlob);
 
     pVSBlob->Release();
     if(FAILED(hr))
@@ -258,10 +260,16 @@ HRESULT InitDevice(){
 
     // Compile the pixel shader
     ID3DBlob* pPSBlob = nullptr;
-    hr = CompileShaderFromFile("Tutorial07.fx", "PS", "ps_4_0", &pPSBlob);
+    hr = CompileShaderFromFile("Tutorial07.fx",
+                               "PS",
+                               "ps_4_0",
+                               &pPSBlob);
     if(FAILED(hr))
     {
-        MessageBox(nullptr, "The FX file cannot be compiled.  Please run this executable from the directory that contains the FX file.", "Error", MB_OK);
+        MessageBox(nullptr,
+                   "The FX file cannot be compiled.  Please run this executable from the directory that contains the FX file.",
+                   "Error",
+                   MB_OK);
         return hr;
     }
 
@@ -306,22 +314,32 @@ HRESULT InitDevice(){
     };
 
     D3D11_BUFFER_DESC bd;
-    memset(&bd, 0, sizeof(bd));
+    memset(&bd,
+           0,
+           sizeof(bd));
     bd.Usage = D3D11_USAGE_DEFAULT;
     bd.ByteWidth = sizeof(SimpleVertex) * 24;
     bd.BindFlags = D3D11_BIND_VERTEX_BUFFER;
     bd.CPUAccessFlags = 0;
     D3D11_SUBRESOURCE_DATA InitData;
-    memset(&InitData, 0, sizeof(InitData));
+    memset(&InitData,
+           0,
+           sizeof(InitData));
     InitData.pSysMem = vertices;
-    hr = g_device.CreateBuffer(&bd, &InitData, &g_pVertexBuffer);
+    hr = g_device.CreateBuffer(&bd,
+                               &InitData,
+                               &g_pVertexBuffer);
     if(FAILED(hr))
         return hr;
 
     // Set vertex buffer
     UINT stride = sizeof(SimpleVertex);
     UINT offset = 0;
-    g_deviceContext.IASetVertexBuffers( 0, 1, &g_pVertexBuffer, &stride, &offset);
+    g_deviceContext.IASetVertexBuffers( 0,
+                                        1,
+                                        &g_pVertexBuffer,
+                                        &stride,
+                                        &offset);
 
     // Create index buffer
     // Create vertex buffer
