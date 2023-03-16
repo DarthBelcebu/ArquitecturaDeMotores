@@ -54,10 +54,10 @@ public:
 
 	HRESULT
 	CreatePixelShader(const void* pShaderBytecode,
-														unsigned int BytecodeLength,
-														ID3D11ClassLinkage *pClassLinkage,
-														ID3D11PixelShader** ppPixelShader);
-														//Create a pixel shader
+		                unsigned int BytecodeLength,
+		                ID3D11ClassLinkage *pClassLinkage,
+	                  ID3D11PixelShader** ppPixelShader);
+                    //Create a pixel shader
 
 	HRESULT
 	CreateBuffer(const D3D11_BUFFER_DESC* pDesc,
