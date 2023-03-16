@@ -43,12 +43,14 @@ public:
 
 	void
 	PSSetShader(ID3D11PixelShader* pPixelShader,
-							ID3D11ClassInstance *const *ppClassInstances,
-							unsigned int NumClassInstances);
-							//Sets a pixel shader to the device
+	ID3D11ClassInstance *const *ppClassInstances,
+	unsigned int NumClassInstances);
+	//Sets a pixel shader to the device
 
-	void VSSetConstantBuffers(unsigned int StartSlot,  unsigned int NumBuffers,
-		ID3D11Buffer *const *ppConstantBuffers); //Sets the constant buffers used by the vertex shader
+	void VSSetConstantBuffers(unsigned int StartSlot,
+		unsigned int NumBuffers,
+		ID3D11Buffer *const *ppConstantBuffers);
+		//Sets the constant buffers used by the vertex shader
 
 	void VSSetShader(ID3D11VertexShader* pVertexShader, ID3D11ClassInstance *const *ppClassInstances, 
 		unsigned int NumClassInstances); //Set a vertex shader to the device.
