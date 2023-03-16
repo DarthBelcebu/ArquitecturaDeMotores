@@ -22,33 +22,33 @@
 //--------------------------------------------------------------------------------------
 // Global Variables
 //--------------------------------------------------------------------------------------
-Window                              g_window;
-DeviceContext                       g_deviceContext;
-Device                              g_device;
-DepthStencilView                    g_depthStencilView;
-Texture                             g_ModelTexture;
-Texture                             g_depthStencil;
-Texture                             g_backBuffer;
-InputLayout                         g_inputLayout;
-SwapChain                           g_swapChain;
-RenderTargetView                    g_renderTargetView;
-SamplerState                        g_samplerState;
-Viewport                            g_viewport;
-Transform                           g_transform;
-CTime                               g_Time;
-Camera                              cam;
+Window g_window;
+DeviceContext g_deviceContext;
+Device g_device;
+DepthStencilView g_depthStencilView;
+Texture g_ModelTexture;
+Texture g_depthStencil;
+Texture g_backBuffer;
+InputLayout g_inputLayout;
+SwapChain g_swapChain;
+RenderTargetView g_renderTargetView;
+SamplerState g_samplerState;
+Viewport g_viewport;
+Transform g_transform;
+CTime g_Time;
+Camera cam;
 
-D3D_DRIVER_TYPE                     g_driverType = D3D_DRIVER_TYPE_NULL;
-D3D_FEATURE_LEVEL                   g_featureLevel = D3D_FEATURE_LEVEL_11_0;
-ID3D11VertexShader*                 g_pVertexShader = nullptr;
-ID3D11PixelShader*                  g_pPixelShader = nullptr;
-ID3D11Buffer*                       g_pVertexBuffer = nullptr;
-ID3D11Buffer*                       g_pIndexBuffer = nullptr;
-ID3D11Buffer*                       g_Camera = nullptr;
-ID3D11Buffer*                       g_pCBChangesEveryFrame = nullptr;
+D3D_DRIVER_TYPE g_driverType = D3D_DRIVER_TYPE_NULL;
+D3D_FEATURE_LEVEL g_featureLevel = D3D_FEATURE_LEVEL_11_0;
+ID3D11VertexShader* g_pVertexShader = nullptr;
+ID3D11PixelShader* g_pPixelShader = nullptr;
+ID3D11Buffer* g_pVertexBuffer = nullptr;
+ID3D11Buffer* g_pIndexBuffer = nullptr;
+ID3D11Buffer* g_Camera = nullptr;
+ID3D11Buffer* g_pCBChangesEveryFrame = nullptr;
 
-XMMATRIX                            g_World;
-XMMATRIX                            g_View;
+XMMATRIX g_World;
+XMMATRIX g_View;
 XMMATRIX g_Projection;
 XMFLOAT4 g_vMeshColor(1.f, 1.0f, 1.0f, 1.0f);
 
@@ -58,12 +58,18 @@ float R = 1, G = 1, B = 1;
 //--------------------------------------------------------------------------------------
 //  declarations
 //--------------------------------------------------------------------------------------
-HRESULT InitWindow( HINSTANCE hInstance, int nCmdShow );
-HRESULT InitDevice();
-LRESULT CALLBACK WndProc( HWND, UINT, WPARAM, LPARAM );
-void Render();
-void update();
-void destroy();
+HRESULT
+InitWindow( HINSTANCE hInstance, int nCmdShow );
+HRESULT
+InitDevice();
+LRESULT
+CALLBACK WndProc( HWND, UINT, WPARAM, LPARAM );
+void
+Render();
+void
+update();
+void
+destroy();
 
 //--------------------------------------------------------------------------------------
 // Entry point to the program. Initializes everything and goes into a message processing 
@@ -111,7 +117,8 @@ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR lpCmdLi
 //--------------------------------------------------------------------------------------
 // Helper for compiling shaders with D3DX11
 //--------------------------------------------------------------------------------------
-HRESULT CompileShaderFromFile(char* szFileName, LPCSTR szEntryPoint, LPCSTR szShaderModel, ID3DBlob** ppBlobOut){
+HRESULT
+CompileShaderFromFile(char* szFileName, LPCSTR szEntryPoint, LPCSTR szShaderModel, ID3DBlob** ppBlobOut){
     HRESULT hr = S_OK;
 
     DWORD dwShaderFlags = D3DCOMPILE_ENABLE_STRICTNESS;
@@ -120,7 +127,8 @@ HRESULT CompileShaderFromFile(char* szFileName, LPCSTR szEntryPoint, LPCSTR szSh
 #endif
 
     ID3DBlob* pErrorBlob;
-    hr = D3DX11CompileFromFile(szFileName, nullptr, nullptr, szEntryPoint, szShaderModel, 
+    hr = D3DX11CompileFromFile(szFileName,
+                               nullptr, nullptr, szEntryPoint, szShaderModel, 
         dwShaderFlags, 0, nullptr, ppBlobOut, &pErrorBlob, nullptr);
     if(FAILED(hr)){
         if(pErrorBlob != nullptr)

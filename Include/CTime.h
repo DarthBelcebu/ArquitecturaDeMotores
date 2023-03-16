@@ -1,8 +1,9 @@
 #pragma once
 #include <Windows.h>
 
+//Takes care and gives values for time
 class 
-CTime{ //Takes care and gives values for time
+CTime{ 
 public: 
 	CTime();
 	~CTime();
