@@ -369,12 +369,16 @@ HRESULT InitDevice(){
     bd.BindFlags = D3D11_BIND_INDEX_BUFFER;
     bd.CPUAccessFlags = 0;
     InitData.pSysMem = indices;
-    hr = g_device.CreateBuffer(&bd, &InitData, &g_pIndexBuffer);
+    hr = g_device.CreateBuffer(&bd,
+                               &InitData,
+                               &g_pIndexBuffer);
     if(FAILED(hr))
         return hr;
 
     // Set index buffer
-    g_deviceContext.IASetIndexBuffer(g_pIndexBuffer, DXGI_FORMAT_R16_UINT, 0);
+    g_deviceContext.IASetIndexBuffer(g_pIndexBuffer,
+                                     DXGI_FORMAT_R16_UINT,
+                                     0);
 
     // Set primitive topology
     g_deviceContext.IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
@@ -383,24 +387,31 @@ HRESULT InitDevice(){
     bd.ByteWidth = sizeof(Camera);
     bd.BindFlags = D3D11_BIND_CONSTANT_BUFFER;
     bd.CPUAccessFlags = 0;
-    hr = g_device.CreateBuffer(&bd, nullptr, &g_Camera);
+    hr = g_device.CreateBuffer(&bd,
+                               nullptr,
+                               &g_Camera);
     if (FAILED(hr))
         return hr;
 
     bd.ByteWidth = sizeof(Camera);
-    hr = g_device.CreateBuffer(&bd, nullptr, &g_Camera);
+    hr = g_device.CreateBuffer(&bd,
+                               nullptr,
+                               &g_Camera);
     if (FAILED(hr))
         return hr;
     
     bd.ByteWidth = sizeof(CBChangesEveryFrame);
-    hr = g_device.CreateBuffer( &bd, nullptr, &g_pCBChangesEveryFrame);
+    hr = g_device.CreateBuffer(&bd,
+                               nullptr,
+                               &g_pCBChangesEveryFrame);
     if(FAILED(hr))
         return hr;
 
     // Load the Texture
-    g_ModelTexture.init(g_device, "seafloor.dds");
+    g_ModelTexture.init(g_device,
+                        "seafloor.dds");
     //hr = D3DX11CreateShaderResourceViewFromFile(g_device.m_device, "seafloor.dds", nullptr, nullptr, &g_pTextureRV, nullptr );
-    if( FAILED( hr ) )
+    if(FAILED(hr))
         return hr;
 
     //Create the sample state
@@ -410,13 +421,27 @@ HRESULT InitDevice(){
     g_World = XMMatrixIdentity();
 
     // Initialize the view matrix
-    XMVECTOR Eye = XMVectorSet(0.0f, 3.0f, -6.0f, 0.0f);
-    XMVECTOR At = XMVectorSet(0.0f, 1.0f, 0.0f, 0.0f);
-    XMVECTOR Up = XMVectorSet(0.0f, 1.0f, 0.0f, 0.0f);
-    g_View = XMMatrixLookAtLH(Eye, At, Up);
+    XMVECTOR Eye = XMVectorSet(0.0f,
+                               3.0f,
+                               -6.0f,
+                               0.0f);
+    XMVECTOR At = XMVectorSet(0.0f,
+                              1.0f,
+                              0.0f,
+                              0.0f);
+    XMVECTOR Up = XMVectorSet(0.0f,
+                              1.0f,
+                              0.0f,
+                              0.0f);
+    g_View = XMMatrixLookAtLH(Eye,
+                              At,
+                              Up);
 
     // Initialize the projection matrix (global)
-    g_Projection = XMMatrixPerspectiveFovLH(XM_PIDIV4, g_window.m_width / (FLOAT)g_window.m_height, 0.01f, 100.0f);
+    g_Projection = XMMatrixPerspectiveFovLH(XM_PIDIV4,
+                                            g_window.m_width / (FLOAT)g_window.m_height,
+                                            0.01f,
+                                            100.0f);
 
     cam.mView = XMMatrixTranspose(g_View);
     cam.mProjection = XMMatrixTranspose(g_Projection);
@@ -429,9 +454,13 @@ HRESULT InitDevice(){
 void update(){
     g_transform.Rotation += 0.0002f;
 
-    g_World = XMMatrixScaling    (g_transform.Scale, g_transform.Scale, g_transform.Scale) *
+    g_World = XMMatrixScaling    (g_transform.Scale,
+                                  g_transform.Scale,
+                                  g_transform.Scale) *
               XMMatrixRotationY  (g_transform.Rotation) * 
-              XMMatrixTranslation(g_transform.m_v3Position.x, g_transform.m_v3Position.y, g_transform.m_v3Position.z);
+              XMMatrixTranslation(g_transform.m_v3Position.x,
+                                  g_transform.m_v3Position.y,
+                                  g_transform.m_v3Position.z);
 
     // Update variables that change once per frame
     CBChangesEveryFrame cb;
@@ -439,10 +468,20 @@ void update(){
     cb.vMeshColor = g_vMeshColor;
 
     //UpdateCamera Buffers
-    g_deviceContext.UpdateSubresource(g_Camera, 0, nullptr, &cam, 0, 0);
+    g_deviceContext.UpdateSubresource(g_Camera,
+                                      0,
+                                      nullptr,
+                                      &cam,
+                                      0,
+                                      0);
 
     //Update Mesh Buffers
-    g_deviceContext.UpdateSubresource(g_pCBChangesEveryFrame, 0, nullptr, &cb, 0, 0);
+    g_deviceContext.UpdateSubresource(g_pCBChangesEveryFrame,
+                                      0,
+                                      nullptr,
+                                      &cb,
+                                      0,
+                                      0);
 
 }
 
@@ -466,7 +505,8 @@ void destroy(){
     g_device.destroy();
 }
 
-LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
+LRESULT
+CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
     PAINTSTRUCT ps;
     HDC hdc;
@@ -573,23 +613,39 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 
 void Render(){
     // Clear the back buffer
-    float ClearColor[4] = { 0.0f, 0.125f, 0.3f, 1.0f }; // red, green, blue, alpha
-    g_deviceContext.ClearRenderTargetView(g_renderTargetView.m_renderTargetView, ClearColor);
+    float ClearColor[4] = { 0.0f,
+                            0.125f,
+                            0.3f,
+                            1.0f }; // red, green, blue, alpha
+    g_deviceContext.ClearRenderTargetView(g_renderTargetView.m_renderTargetView,
+                                          ClearColor);
 
     // Clear the depth buffer to 1.0 (max depth)
-    g_deviceContext.ClearDepthStencilView(g_depthStencilView.m_pDepthStencilView,  D3D11_CLEAR_DEPTH,  1.0f,  0);
+    g_deviceContext.ClearDepthStencilView(g_depthStencilView.m_pDepthStencilView,
+                                          D3D11_CLEAR_DEPTH,
+                                          1.0f,
+                                          0);
 
-    g_deviceContext.OMSetRenderTargets(1, &g_renderTargetView.m_renderTargetView, g_depthStencilView.m_pDepthStencilView);
-    g_deviceContext.RSSetViewports(1, &g_viewport.m_viewport);
+    g_deviceContext.OMSetRenderTargets(1,
+                                       &g_renderTargetView.m_renderTargetView,
+                                       g_depthStencilView.m_pDepthStencilView);
+    g_deviceContext.RSSetViewports(1
+                                   ,&g_viewport.m_viewport);
 
     // Set the input layout
     g_deviceContext.IASetInputLayout(g_inputLayout.m_inputLayout);
 
     // Render the cube
-    g_deviceContext.VSSetShader(g_pVertexShader, nullptr, 0);
-    g_deviceContext.VSSetConstantBuffers(0, 1, &g_Camera);
+    g_deviceContext.VSSetShader(g_pVertexShader,
+                                nullptr,
+                                0);
+    g_deviceContext.VSSetConstantBuffers(0,
+                                         1,
+                                         &g_Camera);
 
-    g_deviceContext.VSSetConstantBuffers( 1, 1, &g_pCBChangesEveryFrame);
+    g_deviceContext.VSSetConstantBuffers(1,
+                                         1,
+                                         &g_pCBChangesEveryFrame);
     g_deviceContext.PSSetShader(g_pPixelShader, nullptr, 0);
 
     g_deviceContext.PSSetConstantBuffers(1, 1, &g_pCBChangesEveryFrame);
