@@ -166,7 +166,7 @@ HRESULT InitDevice(){
     // Create a render target view
     g_renderTargetView.init(g_device,
                             g_backBuffer,
-                           DXGI_FORMAT_R8G8B8A8_UNORM);
+                            DXGI_FORMAT_R8G8B8A8_UNORM);
 
     g_backBuffer.destroy();
     if( FAILED( hr ) )
@@ -180,7 +180,9 @@ HRESULT InitDevice(){
                         D3D11_BIND_DEPTH_STENCIL);
 
     // Create the depth stencil view
-    g_depthStencilView.init(g_device, g_depthStencil.m_texture, DXGI_FORMAT_D24_UNORM_S8_UINT);
+    g_depthStencilView.init(g_device,
+                            g_depthStencil.m_texture,
+                            DXGI_FORMAT_D24_UNORM_S8_UINT);
 
     // Setup the viewport
     g_viewport.init(g_window);
@@ -189,7 +191,10 @@ HRESULT InitDevice(){
     ID3DBlob* pVSBlob = nullptr;
     hr = CompileShaderFromFile("Tutorial07.fx", "VS", "vs_4_0", &pVSBlob);
     if(FAILED(hr)){
-        MessageBox(nullptr, "The FX file cannot be compiled.  Please run this executable from the directory that contains the FX file.", "Error", MB_OK);
+        MessageBox(nullptr,
+                   "The FX file cannot be compiled.  Please run this executable from the directory that contains the FX file.",
+                   "Error",
+                   MB_OK);
         return hr;
     }
 
