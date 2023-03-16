@@ -27,22 +27,22 @@ public:
 
 	HRESULT
 	CreateRenderTargetView(ID3D11Resource* pResource,
-												const D3D11_RENDER_TARGET_VIEW_DESC* pDesc,
-												ID3D11RenderTargetView** ppRTView); 	
-								       //Creates a render-target view for accessing resources
+		                    const D3D11_RENDER_TARGET_VIEW_DESC* pDesc,
+		                    ID3D11RenderTargetView** ppRTView);
+	                      //Creates a render-target view for accessing resources
 
 	HRESULT
 	CreateTexture2D(const D3D11_TEXTURE2D_DESC* pDesc,
-			const D3D11_SUBRESOURCE_DATA* pInitialData,
-			ID3D11Texture2D** ppTexture2D);
-			//Create an array of 2D textures
+		              const D3D11_SUBRESOURCE_DATA* pInitialData,
+		              ID3D11Texture2D** ppTexture2D);
+	                //Create an array of 2D textures
 
 	HRESULT
 	CreateVertexShader(const void* pShaderBytecode,
-														unsigned int BytecodeLength,
-														ID3D11ClassLinkage* pClassLinkage,
-														ID3D11VertexShader** ppVertexShader);
-														//Create a vertex-shader
+		                 unsigned int BytecodeLength,
+		                 ID3D11ClassLinkage* pClassLinkage,
+		                 ID3D11VertexShader** ppVertexShader);
+	                   //Create a vertex-shader
 
 	HRESULT
 	CreateInputLayout(const D3D11_INPUT_ELEMENT_DESC* pInputElementDescs,
