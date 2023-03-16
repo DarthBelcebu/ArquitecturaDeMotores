@@ -61,8 +61,8 @@ public:
 
 	HRESULT
 	CreateBuffer(const D3D11_BUFFER_DESC* pDesc,
-               const D3D11_SUBRESOURCE_DATA* pInitialData,
-               ID3D11Buffer** ppBuffer);	
+		           const D3D11_SUBRESOURCE_DATA* pInitialData,
+		           ID3D11Buffer** ppBuffer);	
                //Creates a vertex buffer, index buffer, or shader constant buffer
 
 	HRESULT
