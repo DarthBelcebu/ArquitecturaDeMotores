@@ -46,11 +46,11 @@ public:
 
 	HRESULT
 	CreateInputLayout(const D3D11_INPUT_ELEMENT_DESC* pInputElementDescs,
-                    unsigned int NumElements,
-                    const void *pShaderBytecodeWithInputSignature,
-                    unsigned int BytecodeLength,
-                    ID3D11InputLayout** ppInputLayout);
-                    //Create an input layout
+		                unsigned int NumElements,
+		                const void *pShaderBytecodeWithInputSignature,
+		                unsigned int BytecodeLength,
+		                ID3D11InputLayout** ppInputLayout);
+	                  //Create an input layout
 
 	HRESULT
 	CreatePixelShader(const void* pShaderBytecode,
