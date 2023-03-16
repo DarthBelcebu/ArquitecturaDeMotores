@@ -20,10 +20,10 @@ public:
 	destroy();
 
 	HRESULT
-		CreateDepthStencilView(ID3D11Resource* pResource, 
-													const D3D11_DEPTH_STENCIL_VIEW_DESC *pDesc,
-													ID3D11DepthStencilView** ppDepthStencilView); 	
-											//Create a depth-stencil view for accessing resources
+		CreateDepthStencilView(ID3D11Resource* pResource,
+			                     const D3D11_DEPTH_STENCIL_VIEW_DESC *pDesc,
+			                     ID3D11DepthStencilView** ppDepthStencilView);
+	                         //Create a depth-stencil view for accessing resources
 
 	HRESULT
 	CreateRenderTargetView(ID3D11Resource* pResource,
