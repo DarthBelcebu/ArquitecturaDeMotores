@@ -16,7 +16,7 @@ public:
 	init(Device device,
 	     ID3D11Resource* depthStencil,
 	     DXGI_FORMAT Format); 
-	//initializing device, depth stencil and format
+	     //initializing device, depth stencil and format
 
 	void
 	update();
