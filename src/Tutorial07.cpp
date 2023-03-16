@@ -646,13 +646,24 @@ void Render(){
     g_deviceContext.VSSetConstantBuffers(1,
                                          1,
                                          &g_pCBChangesEveryFrame);
-    g_deviceContext.PSSetShader(g_pPixelShader, nullptr, 0);
+    g_deviceContext.PSSetShader(g_pPixelShader,
+                                nullptr,
+                                0);
 
-    g_deviceContext.PSSetConstantBuffers(1, 1, &g_pCBChangesEveryFrame);
-    g_deviceContext.PSSetShaderResources(0, 1, &g_ModelTexture.m_textureFromImg);
+    g_deviceContext.PSSetConstantBuffers(1,
+                                         1,
+                                         &g_pCBChangesEveryFrame);
 
-    g_deviceContext.PSSetSamplers(0, 1, &g_samplerState.m_sampler);
-    g_deviceContext.DrawIndexed(36, 0, 0);
+    g_deviceContext.PSSetShaderResources(0,
+                                         1,
+                                         &g_ModelTexture.m_textureFromImg);
+
+    g_deviceContext.PSSetSamplers(0,
+                                  1,
+                                  &g_samplerState.m_sampler);
+    g_deviceContext.DrawIndexed(36,
+                                0,
+                                0);
 
     // Present our back buffer to our front buffer
     g_swapChain.present();
