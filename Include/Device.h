@@ -61,14 +61,14 @@ public:
 
 	HRESULT
 	CreateBuffer(const D3D11_BUFFER_DESC* pDesc,
-		       const D3D11_SUBRESOURCE_DATA* pInitialData,
+		           const D3D11_SUBRESOURCE_DATA* pInitialData,
 		           ID3D11Buffer** ppBuffer);	
                //Creates a vertex buffer, index buffer, or shader constant buffer
 
 	HRESULT
 	CreateSamplerState(const D3D11_SAMPLER_DESC* pSamplerDesc,
-		                 ID3D11SamplerState **ppSamplerState);	
-										 //Create a sampler state
+		                 ID3D11SamplerState **ppSamplerState);
+	                   //Create a sampler state
 
 public:
 	ID3D11Device* m_device = nullptr;
