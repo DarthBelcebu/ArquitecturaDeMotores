@@ -128,8 +128,16 @@ CompileShaderFromFile(char* szFileName, LPCSTR szEntryPoint, LPCSTR szShaderMode
 
     ID3DBlob* pErrorBlob;
     hr = D3DX11CompileFromFile(szFileName,
-                               nullptr, nullptr, szEntryPoint, szShaderModel, 
-        dwShaderFlags, 0, nullptr, ppBlobOut, &pErrorBlob, nullptr);
+                               nullptr,
+                               nullptr,
+                               szEntryPoint,
+                               szShaderModel,
+                               dwShaderFlags,
+                               0,
+                               nullptr,
+                               ppBlobOut,
+                               &pErrorBlob,
+                               nullptr);
     if(FAILED(hr)){
         if(pErrorBlob != nullptr)
             OutputDebugStringA((char*)pErrorBlob->GetBufferPointer());
@@ -150,17 +158,26 @@ HRESULT InitDevice(){
     HRESULT hr = S_OK;
   
     //Create swap chain
-    g_swapChain.init(g_device, g_deviceContext, g_backBuffer, g_window);
+    g_swapChain.init(g_device,
+                     g_deviceContext,
+                     g_backBuffer,
+                     g_window);
 
     // Create a render target view
-    g_renderTargetView.init(g_device, g_backBuffer, DXGI_FORMAT_R8G8B8A8_UNORM);
+    g_renderTargetView.init(g_device,
+                            g_backBuffer,
+                           DXGI_FORMAT_R8G8B8A8_UNORM);
 
     g_backBuffer.destroy();
     if( FAILED( hr ) )
         return hr;
 
     // Create depth stencil texture
-    g_depthStencil.init(g_device, g_window.m_width, g_window.m_height, DXGI_FORMAT_D24_UNORM_S8_UINT,D3D11_BIND_DEPTH_STENCIL);
+    g_depthStencil.init(g_device,
+                        g_window.m_width,
+                        g_window.m_height,
+                        DXGI_FORMAT_D24_UNORM_S8_UINT,
+                        D3D11_BIND_DEPTH_STENCIL);
 
     // Create the depth stencil view
     g_depthStencilView.init(g_device, g_depthStencil.m_texture, DXGI_FORMAT_D24_UNORM_S8_UINT);
