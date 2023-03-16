@@ -1,20 +1,28 @@
 #pragma once
 #include "Prerequisities.h"
 
-class Device; //Calling Device class
+class
+Device; //Calling Device class
 
-class SamplerState{
+class
+SamplerState{
 
-	public: SamplerState() = default;
+public:
+	SamplerState() = default;
 	~SamplerState() {};
 
-	void init(Device device);
+	void
+	init(Device device);
 
-	void update();
+	void
+	update();
 
-	void render();
+	void
+	render();
 
-	void destroy();
+	void
+	destroy();
 
-	public:	ID3D11SamplerState* m_sampler = nullptr; // Create the sample
+public:
+		ID3D11SamplerState* m_sampler = nullptr; // Create the sample
 };
