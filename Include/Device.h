@@ -29,7 +29,7 @@ public:
 	CreateRenderTargetView(ID3D11Resource* pResource,
 												const D3D11_RENDER_TARGET_VIEW_DESC* pDesc,
 												ID3D11RenderTargetView** ppRTView); 	
-								//Creates a render-target view for accessing resources
+								       //Creates a render-target view for accessing resources
 
 	HRESULT
 	CreateTexture2D(const D3D11_TEXTURE2D_DESC* pDesc,
@@ -46,11 +46,11 @@ public:
 
 	HRESULT
 	CreateInputLayout(const D3D11_INPUT_ELEMENT_DESC* pInputElementDescs,
-														unsigned int NumElements,
-														const void *pShaderBytecodeWithInputSignature,
-														unsigned int BytecodeLength,
-														ID3D11InputLayout** ppInputLayout);
-														//Create an input layout
+                    unsigned int NumElements,
+                    const void *pShaderBytecodeWithInputSignature,
+                    unsigned int BytecodeLength,
+                    ID3D11InputLayout** ppInputLayout);
+                    //Create an input layout
 
 	HRESULT
 	CreatePixelShader(const void* pShaderBytecode,
@@ -61,14 +61,14 @@ public:
 
 	HRESULT
 	CreateBuffer(const D3D11_BUFFER_DESC* pDesc,
-											const D3D11_SUBRESOURCE_DATA* pInitialData,
-											ID3D11Buffer** ppBuffer);	
+               const D3D11_SUBRESOURCE_DATA* pInitialData,
+               ID3D11Buffer** ppBuffer);	
 								//Creates a vertex buffer, index buffer, or shader constant buffer
 
 	HRESULT
 	CreateSamplerState(const D3D11_SAMPLER_DESC* pSamplerDesc,
-														ID3D11SamplerState **ppSamplerState);	
-														//Create a sampler state
+                     ID3D11SamplerState **ppSamplerState);	
+										 //Create a sampler state
 
 public:
 	ID3D11Device* m_device = nullptr;
