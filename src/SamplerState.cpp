@@ -1,7 +1,8 @@
 #include "SamplerState.h"
 #include "Device.h"
 
-void SamplerState::init(Device device){
+void
+SamplerState::init(Device device){
 
   if (device.m_device == nullptr) {
     WARNING("ERROR: SamplerState::init : [CREATION OF RESOURCE : FALSE] [CHECK FOR Device device] \n");

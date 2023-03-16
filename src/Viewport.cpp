@@ -1,7 +1,8 @@
 #include "Viewport.h"
 #include "Window.h"
 
-void Viewport::init(Window window){
+void
+Viewport::init(Window window){
 
   if (window.m_hWnd == nullptr) {
     WARNING("ERROR: Viewport::init : [CREATION OF RESOURCE : FALSE] [CHECK FOR Window window] \n");
@@ -16,14 +17,17 @@ void Viewport::init(Window window){
   m_viewport.TopLeftY = 0;
 }
 
-void Viewport::update(){
+void
+Viewport::update(){
 
 }
 
-void Viewport::render(){
+void
+Viewport::render(){
 
 }
 
-void Viewport::destroy(){
+void
+Viewport::destroy(){
 
 }

@@ -9,7 +9,8 @@ Window::~Window(){
 
 }
 
-HRESULT Window::init(HINSTANCE hInstance, int nCmdShow, WNDPROC wndproc, LPCSTR windowName) {
+HRESULT
+Window::init(HINSTANCE hInstance, int nCmdShow, WNDPROC wndproc, LPCSTR windowName) {
 
     m_windowName = windowName;
     m_hInst = hInstance;
@@ -49,14 +50,17 @@ HRESULT Window::init(HINSTANCE hInstance, int nCmdShow, WNDPROC wndproc, LPCSTR 
     return S_OK;
 }
 
-void Window::update(){
+void
+Window::update(){
 
 }
 
-void Window::render(){
+void
+Window::render(){
 
 }
 
-void Window::destroy(){
+void
+Window::destroy(){
 
 }

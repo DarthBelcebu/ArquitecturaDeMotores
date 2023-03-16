@@ -1,17 +1,26 @@
 #pragma once
 #include <Windows.h>
 
-class Window{
-	public:Window();
+class
+Window{
+public:
+	Window();
 	~Window();
 
-	HRESULT init(HINSTANCE hInstance, int nCmdShow, WNDPROC wndproc, LPCSTR windowName);
+	HRESULT
+	init(HINSTANCE hInstance,
+		   int nCmdShow,
+		   WNDPROC wndproc,
+		   LPCSTR windowName);
 
-	void update();
+	void
+	update();
 
-	void render();
+	void
+	render();
 
-	void destroy();
+	void
+	destroy();
 
 	//creates window
 	public:
@@ -22,4 +31,3 @@ class Window{
 	unsigned int m_height;
 	LPCSTR m_windowName = "None";
 };
-

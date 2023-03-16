@@ -1,7 +1,10 @@
 #include "DepthStencilView.h"
 #include "Device.h"
 
-void DepthStencilView::init(Device device, ID3D11Resource* depthStencil,  DXGI_FORMAT Format){
+void
+DepthStencilView::init(Device device,
+	                     ID3D11Resource* depthStencil,
+	                     DXGI_FORMAT Format){
 
 	if (device.m_device == nullptr) {
 		WARNING("ERROR: DepthStencilView::init : [CREATION OF RESOURCE : FALSE] [CHECK FOR Device device] \n");
@@ -21,7 +24,9 @@ void DepthStencilView::init(Device device, ID3D11Resource* depthStencil,  DXGI_F
 		descDSV.ViewDimension = D3D11_DSV_DIMENSION_TEXTURE2D;
 		descDSV.Texture2D.MipSlice = 0;
 
-		device.CreateDepthStencilView(depthStencil, &descDSV, &m_pDepthStencilView);
+		device.CreateDepthStencilView(depthStencil,
+			                            &descDSV,
+			                            &m_pDepthStencilView);
 	}
 }
 

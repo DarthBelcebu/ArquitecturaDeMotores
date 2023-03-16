@@ -4,7 +4,8 @@
 #include "Window.h"
 #include "Texture.h"
 
-void SwapChain::init(Device& device, DeviceContext& deviceContext, Texture& backBuffer, Window window){
+void
+SwapChain::init(Device& device, DeviceContext& deviceContext, Texture& backBuffer, Window window){
 
 	if (window.m_hWnd == nullptr) {
 		WARNING("ERROR: SwapChain::init : [CREATION OF RESOURCE : FALSE] [CHECK FOR Window window] \n");
@@ -71,20 +72,24 @@ void SwapChain::init(Device& device, DeviceContext& deviceContext, Texture& back
 	}
 }
 
-void SwapChain::update(){
+void
+SwapChain::update(){
 
 }
 
-void SwapChain::render(){
+void
+SwapChain::render(){
 
 }
 
-void SwapChain::destroy()
+void
+SwapChain::destroy()
 {
 	SAFE_RELEASE(m_swapChain);
 }
 
-void SwapChain::present()
+void
+SwapChain::present()
 {
 	m_swapChain->Present(0, 0);
 }

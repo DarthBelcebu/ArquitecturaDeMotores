@@ -2,8 +2,10 @@
 #include "Prerequisities.h"
 #include "Commons.h"
 
-class Transform{
-	public: Transform() = default;
+class
+Transform{
+public:
+	Transform() = default;
 	~Transform() {};
 
 	void
